@@ -1,0 +1,103 @@
+package com.project.memo.app
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import com.project.memo.core.presentation.theme.CustomColor
+import com.project.memo.navigation.CustomNavHost
+import org.jetbrains.compose.resources.stringResource
+
+
+@Composable
+fun App(
+    appState: AppState,
+    modifier: Modifier = Modifier,
+) {
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize(),
+        containerColor = CustomColor.Transparent,
+        contentColor = CustomColor.White,
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
+        snackbarHost = {
+            SnackbarHost(
+                snackbarHostState,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
+        }
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .consumeWindowInsets(padding)
+                .windowInsetsPadding(
+                    WindowInsets.safeDrawing.only(
+                        WindowInsetsSides.Horizontal
+                    )
+                )
+        ) {
+            val destination = appState.currentTopLevelDestination
+            var shouldShowTopAppBar = false
+
+            if (destination != null) {
+                shouldShowTopAppBar = true
+//                NiaTopAppBar(
+//                    titleRes = destination.titleTextId,
+//                    navigationIcon = NiaIcons.Search,
+//                    navigationIconContentDescription = stringResource(
+//                        id = settingsR.string.feature_settings_top_app_bar_navigation_icon_description,
+//                    ),
+//                    actionIcon = NiaIcons.Settings,
+//                    actionIconContentDescription = stringResource(
+//                        id = settingsR.string.feature_settings_top_app_bar_action_icon_description,
+//                    ),
+//                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+//                        containerColor = Color.Transparent,
+//                    ),
+//                    onActionClick = { onTopAppBarActionClick() },
+//                    onNavigationClick = { appState.navigateToSearch() },
+//                )
+            }
+
+            Box(
+                modifier = Modifier.consumeWindowInsets(
+                    if (shouldShowTopAppBar) {
+                        WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+                    } else {
+                        WindowInsets(0, 0, 0, 0)
+                    },
+                )
+            ) {
+                CustomNavHost(
+                    appState = appState,
+                    onShowSnackbar = { message, action ->
+                        snackbarHostState.showSnackbar(
+                            message = message,
+                            actionLabel = action,
+                            duration = SnackbarDuration.Short
+                        ) == SnackbarResult.ActionPerformed
+                    }
+                )
+            }
+        }
+    }
+}
