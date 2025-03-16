@@ -1,8 +1,12 @@
 package com.project.memo.home.presentation
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -10,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -21,6 +26,9 @@ import com.project.memo.core.presentation.common.CustomButton
 import com.project.memo.core.presentation.theme.CustomColor
 import com.project.memo.home.presentation.intent.HomeEvent
 import com.project.memo.home.presentation.state.HomeUiState
+import memoapp.composeapp.generated.resources.Res
+import memoapp.composeapp.generated.resources.compose_multiplatform
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -30,7 +38,7 @@ internal fun HomeRoute(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinViewModel<HomeViewModel>(),
 ) {
-    val homeState by viewModel.homeState.collectAsStateWithLifecycle()
+    val homeState by viewModel.uiState.collectAsStateWithLifecycle()
 
     HomeScreen(
         modifier = modifier,
@@ -49,13 +57,13 @@ internal fun HomeScreen(
     onShowSnackbar: suspend (String, String?) -> Boolean,
     onToggleButtonClicked: () -> Unit,
 ) {
-    Box(
+    Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CustomButton(
-            modifier = Modifier
-                .align(Alignment.TopCenter),
+            modifier = Modifier,
             normalColor = CustomColor.Black,
             pressColor = CustomColor.PressBlack,
             onClick = { onToggleButtonClicked() },
@@ -67,6 +75,11 @@ internal fun HomeScreen(
                     lineHeight = TextUnit.Unspecified
                 )
             )
+        }
+        AnimatedVisibility(state.isOpen) {
+            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Image(painterResource(Res.drawable.compose_multiplatform), null)
+            }
         }
     }
 }
