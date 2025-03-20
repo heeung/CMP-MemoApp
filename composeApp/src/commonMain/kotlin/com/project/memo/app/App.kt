@@ -1,5 +1,6 @@
 package com.project.memo.app
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
@@ -15,13 +16,11 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.project.memo.core.presentation.theme.CustomColor
+import com.project.memo.core.designsystem.theme.CustomColor
 import com.project.memo.navigation.CustomNavHost
-import org.jetbrains.compose.resources.stringResource
 
 
 @Composable
@@ -30,12 +29,12 @@ fun App(
     modifier: Modifier = Modifier,
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
-
+    
     Scaffold(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize(),
-        containerColor = CustomColor.Transparent,
-        contentColor = CustomColor.White,
+        containerColor = CustomColor.current.transparent,
+        contentColor = CustomColor.current.backgroundColor,
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = {
             SnackbarHost(

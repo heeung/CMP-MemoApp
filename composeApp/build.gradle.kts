@@ -84,6 +84,8 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.skiko.macos)
+            implementation(libs.skiko.window)
+            implementation(libs.skiko)
 
             implementation(libs.ktor.client.okhttp)
         }
