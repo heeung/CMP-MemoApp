@@ -61,7 +61,6 @@ internal fun HomeScreen(
             pressColor = CustomColor.current.buttonPressColor,
             onClick = {
                 onToggleButtonClicked()
-                CustomColor.toggleTheme()
             },
         ) {
             Text(

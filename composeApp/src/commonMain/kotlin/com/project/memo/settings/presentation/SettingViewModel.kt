@@ -1,35 +1,34 @@
-package com.project.memo.home.presentation
+package com.project.memo.settings.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.project.memo.core.base.BaseViewModel
-import com.project.memo.home.presentation.intent.HomeEvent
 import com.project.memo.settings.presentation.intent.SettingEvent
-import com.project.memo.home.presentation.state.HomeUiState
+import com.project.memo.settings.presentation.state.SettingUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 
-class HomeViewModel(
+class SettingViewModel(
     // TODO Repository
-): BaseViewModel<HomeUiState, HomeEvent>(
-    initialState = HomeUiState()
+): BaseViewModel<SettingUiState, SettingEvent>(
+    initialState = SettingUiState()
 ) {
-    private val _homeState = MutableStateFlow(HomeUiState())
-    val homeState = _homeState
+    private val _settingState = MutableStateFlow(SettingUiState())
+    val settingState = _settingState
         .onStart {
 
         }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000L),
-            initialValue = _homeState.value
+            initialValue = _settingState.value
         )
 
-    fun onEvent(event: HomeEvent) {
+    fun onEvent(event: SettingEvent) {
         when (event) {
-            is HomeEvent.OnClickToggleButton -> {
-                setState { copy(isOpen = !isOpen) }
+            is SettingEvent.OnClickThemeChangeButton -> {
+                setState { copy(isDark = !isDark) }
             }
         }
     }

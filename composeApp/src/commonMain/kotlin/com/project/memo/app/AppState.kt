@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.project.memo.navigation.TopLevelDestination
 import com.project.memo.navigation.route.navigateToHome
+import com.project.memo.navigation.route.navigateToSetting
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -90,6 +91,7 @@ class AppState(
 
             when (topLevelDestination) {
                 TopLevelDestination.HOME -> navController.navigateToHome(topLevelNavOptions)
+                TopLevelDestination.SETTING -> navController.navigateToSetting(topLevelNavOptions)
             }
         }
     }

@@ -20,6 +20,7 @@ fun rememberAnimatedCustomColors(
 
     val buttonHoverColor = colors.buttonHoverColor
     val buttonPressColor = colors.buttonPressColor
+    val selectedBackground = colors.selectedBackground
 
     return CustomColors(
         transparent = colors.transparent,
@@ -27,7 +28,8 @@ fun rememberAnimatedCustomColors(
         buttonColor = animatedButton,
         buttonHoverColor = buttonHoverColor,
         buttonPressColor = buttonPressColor,
-        textColor = animatedText
+        textColor = animatedText,
+        selectedBackground = selectedBackground
     )
 }
 
@@ -53,6 +55,8 @@ data class CustomColors (
     @Stable val buttonPressColor: Color,
 
     @Stable val textColor: Color,
+
+    @Stable val selectedBackground: Color,
 )
 
 object CustomColor {
@@ -79,7 +83,9 @@ fun lightColors(): CustomColors = CustomColors(
     buttonHoverColor = DefaultColor.HoverBlack,
     buttonPressColor = DefaultColor.PressBlack,
 
-    textColor = DefaultColor.White
+    textColor = DefaultColor.White,
+
+    selectedBackground = Color(0xff97f2ff),
 )
 
 fun darkColors(): CustomColors = CustomColors(
@@ -92,4 +98,6 @@ fun darkColors(): CustomColors = CustomColors(
     buttonPressColor = DefaultColor.PressWhite,
 
     textColor = DefaultColor.Black,
+
+    selectedBackground = Color(0xff36595e),
 )

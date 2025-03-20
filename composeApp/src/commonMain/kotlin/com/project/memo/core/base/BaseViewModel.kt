@@ -1,4 +1,4 @@
-package com.project.memo.core
+package com.project.memo.core.base
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
