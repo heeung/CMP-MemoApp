@@ -1,5 +1,6 @@
 package com.project.memo.navigation.route
 
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -14,10 +15,11 @@ fun NavController.navigateToHome(navOptions: NavOptions) =
     navigate(route = HomeRoute, navOptions)
 
 fun NavGraphBuilder.homeScreen(
+    modifier: Modifier = Modifier,
     onTopicClick: (String) -> Unit,
     onShowSnackbar: suspend (String, String?) -> Boolean
 ) {
     composable<HomeRoute> {
-        HomeRoute(onTopicClick, onShowSnackbar)
+        HomeRoute(modifier, onTopicClick, onShowSnackbar)
     }
 }

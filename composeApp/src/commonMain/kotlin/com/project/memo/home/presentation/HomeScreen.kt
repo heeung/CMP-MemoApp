@@ -18,16 +18,17 @@ import com.project.memo.core.designsystem.component.CustomButton
 import com.project.memo.core.designsystem.theme.CustomColor
 import com.project.memo.home.presentation.intent.HomeEvent
 import com.project.memo.home.presentation.state.HomeUiState
-import memoapp.composeapp.generated.resources.Res
-import memoapp.composeapp.generated.resources.compose_multiplatform
+import com.project.memo.Res
+import com.project.memo.compose_multiplatform
+import com.project.memo.core.designsystem.component.CustomText
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun HomeRoute(
+    modifier: Modifier = Modifier,
     onTopicClick: (String) -> Unit,
     onShowSnackbar: suspend (String, String?) -> Boolean,
-    modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinViewModel<HomeViewModel>(),
 ) {
     val homeState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -63,9 +64,10 @@ internal fun HomeScreen(
                 onToggleButtonClicked()
             },
         ) {
-            Text(
+            CustomText(
                 text = "toggle button",
                 fontSize = 16.sp,
+                color = CustomColor.current.buttonTextColor,
                 style = TextStyle(
                     lineHeight = TextUnit.Unspecified
                 )

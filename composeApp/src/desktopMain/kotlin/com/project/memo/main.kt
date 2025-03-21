@@ -16,6 +16,7 @@ import com.project.memo.core.designsystem.theme.CustomColor
 import com.project.memo.core.designsystem.theme.CustomColors
 import com.project.memo.core.designsystem.theme.CustomTheme
 import com.project.memo.core.designsystem.theme.LocalTheme
+import com.project.memo.core.designsystem.theme.NanumRound
 import com.project.memo.core.designsystem.theme.darkColors
 import com.project.memo.core.designsystem.theme.lightColors
 import com.project.memo.core.designsystem.theme.rememberAnimatedCustomColors
@@ -32,6 +33,8 @@ fun main() {
                 height = 780.dp
             )
         ) {
+            NanumRound.initFont()
+
             val appState = rememberAppState()
 
             val darkTheme = CustomColor.themeState.collectAsState()

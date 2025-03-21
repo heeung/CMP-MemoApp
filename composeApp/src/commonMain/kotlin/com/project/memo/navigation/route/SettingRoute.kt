@@ -1,5 +1,6 @@
 package com.project.memo.navigation.route
 
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -14,9 +15,10 @@ fun NavController.navigateToSetting(navOptions: NavOptions) =
     navigate(route = SettingRoute, navOptions)
 
 fun NavGraphBuilder.settingScreen(
+    modifier: Modifier = Modifier,
     onShowSnackbar: suspend (String, String?) -> Boolean
 ) {
     composable<SettingRoute> {
-        SettingRoute(onShowSnackbar)
+        SettingRoute(modifier, onShowSnackbar)
     }
 }

@@ -48,6 +48,8 @@ kotlin {
             api(compose.foundation)
             api(compose.material3)
             api(compose.material3AdaptiveNavigationSuite)
+            api(compose.animation)
+            api(compose.animationGraphics)
             api(compose.ui)
             api(compose.components.resources)
             api(compose.components.uiToolingPreview)
@@ -67,6 +69,8 @@ kotlin {
 
             implementation(libs.bundles.ktor)
             implementation(libs.ktorfit)
+
+            api(libs.androidx.graphics.shapes)
         }
         androidMain.dependencies {
             implementation(compose.preview)
@@ -125,7 +129,14 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.foundation.android)
     debugImplementation(compose.uiTooling)
+}
+
+compose.resources {
+    publicResClass = true
+    generateResClass = auto
+    packageOfResClass = "com.project.memo"
 }
 
 compose.desktop {

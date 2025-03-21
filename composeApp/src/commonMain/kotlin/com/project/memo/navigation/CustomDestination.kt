@@ -1,10 +1,10 @@
 package com.project.memo.navigation
 
+import com.project.memo.Res
+import com.project.memo.icon_home
+import com.project.memo.icon_setting
 import com.project.memo.navigation.route.HomeRoute
 import com.project.memo.navigation.route.SettingRoute
-import memoapp.composeapp.generated.resources.Res
-import memoapp.composeapp.generated.resources.icon_home
-import memoapp.composeapp.generated.resources.icon_setting
 import org.jetbrains.compose.resources.DrawableResource
 import kotlin.reflect.KClass
 

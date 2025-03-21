@@ -25,7 +25,9 @@ room = "2.7.0-alpha11"
 koin = "4.0.0"
 ktor = "3.0.0"
 ktorfit = "2.1.0"
-runtimeAndroid = "1.7.8"
+shapes = "1.0.0"
+foundationAndroid = "1.7.8"
+
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -69,6 +71,10 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
+
+# shapes
+androidx-graphics-shapes = { module = "androidx.graphics:graphics-shapes", version.ref = "shapes" }
+androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

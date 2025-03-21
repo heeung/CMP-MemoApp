@@ -2,8 +2,8 @@ package com.project.memo.app
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -33,7 +33,9 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import com.project.memo.core.designsystem.extention.noRippleClickable
 import com.project.memo.core.designsystem.theme.CustomColor
 import com.project.memo.navigation.CustomNavHost
-import com.project.memo.navigation.TopLevelDestination
+import com.project.memo.navigation.NavItem
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import kotlin.reflect.KClass
 
 
@@ -60,29 +62,21 @@ fun App(
         bottomBar = {
             Row(
                 modifier = Modifier
-                    .height(40.dp)
+                    .height(66.dp)
                     .fillMaxSize()
             ) {
                 appState.topLevelDestinations.forEach { destination ->
-                    Box(
+                    val selected = currentDestination.isRouteInHierarchy(destination.baseRoute)
+
+                    NavItem(
                         modifier = Modifier
-                            .background(
-                                color = if (currentDestination.isRouteInHierarchy(destination.baseRoute))
-                                        CustomColor.current.selectedBackground
-                                    else CustomColor.current.buttonColor
-                            )
                             .fillMaxHeight()
-                            .weight(1f)
-                            .noRippleClickable { appState.navigateToTopLevelDestination(destination) },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = destination.iconText,
-                            color = CustomColor.current.textColor,
-                            fontFamily = FontFamily.Monospace,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
+                            .weight(1f),
+                        label = destination.iconText,
+                        iconPainter = painterResource(destination.selectedIcon),
+                        selected = selected,
+                        onClick = { appState.navigateToTopLevelDestination(destination) },
+                    )
                 }
             }
         }
@@ -131,6 +125,8 @@ fun App(
                 )
             ) {
                 CustomNavHost(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp),
                     appState = appState,
                     onShowSnackbar = { message, action ->
                         snackbarHostState.showSnackbar(
