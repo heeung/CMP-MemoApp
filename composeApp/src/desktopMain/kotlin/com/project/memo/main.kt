@@ -12,6 +12,8 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import com.project.memo.app.App
 import com.project.memo.app.rememberAppState
+import com.project.memo.core.data.local.datastore.DATA_STORE_FILE_NAME
+import com.project.memo.core.data.local.datastore.createDataStore
 import com.project.memo.core.designsystem.theme.CustomColor
 import com.project.memo.core.designsystem.theme.CustomColors
 import com.project.memo.core.designsystem.theme.CustomTheme
@@ -24,6 +26,7 @@ import com.project.memo.di.initKoin
 
 fun main() {
     initKoin()
+    val prefs = createDataStore { DATA_STORE_FILE_NAME }
     application {
         Window(
             onCloseRequest = ::exitApplication,

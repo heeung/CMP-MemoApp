@@ -26,7 +26,7 @@ koin = "4.0.0"
 ktor = "3.0.0"
 ktorfit = "2.1.0"
 shapes = "1.0.0"
-foundationAndroid = "1.7.8"
+datastore = "1.1.1"
 
 
 [libraries]
@@ -74,7 +74,11 @@ ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 
 # shapes
 androidx-graphics-shapes = { module = "androidx.graphics:graphics-shapes", version.ref = "shapes" }
-androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
+
+# datastore
+datastore= { module = "androidx.datastore:datastore", version.ref = "datastore" }
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

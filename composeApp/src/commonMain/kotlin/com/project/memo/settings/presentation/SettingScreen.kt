@@ -19,6 +19,7 @@ import com.project.memo.core.designsystem.component.CustomSwitch
 import com.project.memo.core.designsystem.component.CustomText
 import com.project.memo.core.designsystem.theme.CustomColor
 import com.project.memo.core.designsystem.theme.CustomFontFamily
+import com.project.memo.settings.presentation.intent.SettingEvent
 import com.project.memo.settings.presentation.state.SettingUiState
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -29,14 +30,17 @@ internal fun SettingRoute(
     viewModel: SettingViewModel = koinViewModel<SettingViewModel>(),
 ) {
     val settingState by viewModel.uiState.collectAsStateWithLifecycle()
+    val darkThemeState by viewModel.settingState.collectAsStateWithLifecycle()
     val isDarkTheme by CustomColor.themeState.collectAsState()
 
     SettingScreen(
         modifier = modifier,
         state = settingState,
         onShowSnackbar = onShowSnackbar,
-        isDarkTheme =  isDarkTheme,
-        onThemeChangeButtonClicked = { CustomColor.toggleTheme() }
+        isDarkTheme =  darkThemeState.isDark,
+        onThemeChangeButtonClicked = {
+            viewModel.onEvent(SettingEvent.OnClickThemeChangeButton)
+        }
     )
 }
 

@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -14,13 +13,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.project.memo.Res
+import com.project.memo.compose_multiplatform
 import com.project.memo.core.designsystem.component.CustomButton
+import com.project.memo.core.designsystem.component.CustomText
 import com.project.memo.core.designsystem.theme.CustomColor
 import com.project.memo.home.presentation.intent.HomeEvent
 import com.project.memo.home.presentation.state.HomeUiState
-import com.project.memo.Res
-import com.project.memo.compose_multiplatform
-import com.project.memo.core.designsystem.component.CustomText
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 

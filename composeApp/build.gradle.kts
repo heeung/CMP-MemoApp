@@ -69,8 +69,8 @@ kotlin {
 
             implementation(libs.bundles.ktor)
             implementation(libs.ktorfit)
-
-            api(libs.androidx.graphics.shapes)
+            implementation(libs.datastore)
+            implementation(libs.datastore.preferences)
         }
         androidMain.dependencies {
             implementation(compose.preview)
@@ -82,6 +82,7 @@ kotlin {
             implementation(libs.koin.androidx.compose)
 
             implementation(libs.ktor.client.okhttp)
+            api(libs.androidx.graphics.shapes)
         }
         nativeMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -94,6 +95,7 @@ kotlin {
             implementation(libs.skiko)
 
             implementation(libs.ktor.client.okhttp)
+            api(libs.androidx.graphics.shapes)
         }
         dependencies {
             ksp(libs.androidx.room.compiler)
@@ -129,7 +131,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.foundation.android)
     debugImplementation(compose.uiTooling)
 }
 

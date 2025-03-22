@@ -7,6 +7,7 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
+import com.project.memo.core.domain.usecase.GetPrefsDarkTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 
 object DefaultColor {
@@ -112,8 +113,8 @@ object CustomColor {
     private val currentState: Boolean
         get() = themeState.value
 
-    fun toggleTheme() {
-        themeState.value = !currentState
+    fun toggleTheme(isDarkTheme: Boolean) {
+        themeState.value = isDarkTheme
     }
 
     val current: CustomColors
